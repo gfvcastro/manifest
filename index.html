@@ -497,14 +497,14 @@
         <pre class="idl">
           [Constructor(DOMString typeArg, optional BeforeInstallPromptEventInit eventInit)]
           interface BeforeInstallPromptEvent : Event {
-              Promise&lt;UserResponseObject&gt; prompt();
+              Promise&lt;PromptResponseObject&gt; prompt();
           };
 
           dictionary BeforeInstallPromptEventInit : EventInit {
             AppBannerPromptOutcome userChoice;
           };
 
-          dictionary UserResponseObject {
+          dictionary PromptResponseObject {
             AppBannerPromptOutcome userChoice;
           };
         </pre>
@@ -547,8 +547,8 @@
             <dfn>[[\userResponsePromise]]</dfn>
           </dt>
           <dd>
-            A promise, which resolves with an <a>UserResponseObject</a>, which
-            represent the outcome of <a>presenting an install prompt</a>.
+            A promise, which resolves with an <a>PromptResponseObject</a>,
+            which represent the outcome of <a>presenting an install prompt</a>.
           </dd>
         </dl>
         <section>
@@ -623,12 +623,12 @@
               <a>Present an install prompt</a> and let <var>event</var>'s
               <a>[[\promptOutcome]]</a> be the result.
             </li>
-            <li>Let <var>userResponseObj</var> be a newly created
-            <a>UserResponseObject</a> whose <code>userChoice</code> member is
+            <li>Let <var>responseObj</var> be a newly created
+            <a>PromptResponseObject</a> whose <code>userChoice</code> member is
             set to event's <a>[[\promptOutcome]]</a>.
             </li>
             <li>Resolve <a>[[\userResponsePromise]]</a> with
-            <var>userResponseObject</var>.
+            <var>responseObj</var>.
             </li>
           </ol>
         </section>
