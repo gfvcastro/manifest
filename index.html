@@ -497,7 +497,6 @@
         <pre class="idl">
           [Constructor(DOMString typeArg, optional BeforeInstallPromptEventInit eventInit)]
           interface BeforeInstallPromptEvent : Event {
-              readonly attribute Promise&lt;AppBannerPromptOutcome&gt; userChoice;
               Promise&lt;UserResponseObject&gt; prompt();
           };
 
