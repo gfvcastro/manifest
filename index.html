@@ -582,19 +582,19 @@
           <ol>
             <li>Let <var>p</var> be a newly created promise.
             </li>
-            <li>Run the following steps <a>in parallel</a>:
+            <li>Resolve <var>p</var> with <a>[[\userResponsePromise]]</a>.
+            </li>
+            <li>If <a>[[\userResponsePromise]]</a> is pending:
               <ol>
                 <li>If this event's <code>isTrusted</code> attribute is <code>
                   false</code>, reject <a>[[\userResponsePromise]]</a> with
                   <a>NotAllowedError</a>, optionally informing the developer
                   that untrusted events can't call <code>prompt()</code>.
                 </li>
-                <li>Else if <a>[[\didPrompt]]</a> is <code>false</code>, then
-                <a>request to present an install prompt</a> and wait, possibly
-                indefinitely, for the end-user to make a choice.
-                </li>
-                <li>Upon fulfillment of <a>[[\userResponsePromise]]</a>,
-                resolve <var>p</var> with <a>[[\userResponsePromise]]</a>.
+                <li>Else if <a>[[\didPrompt]]</a> is <code>false</code>, then,
+                <a>in parrallel</a>, <a>request to present an install
+                prompt</a> with this event. Wait, possibly indefinitely, for
+                the end-user to make a choice.
                 </li>
               </ol>
             </li>
