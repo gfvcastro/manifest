@@ -536,14 +536,6 @@
             was used to <a>present an install prompt</a> to the end-user.
           </dd>
           <dt>
-            <dfn>[[\promptOutcome]]</dfn>
-          </dt>
-          <dd>
-            An <a>AppBannerPromptOutcome</a> enum value, initially set to
-            <code>null</code>. Represents the outcome of <a>presenting an
-            install prompt</a>.
-          </dd>
-          <dt>
             <dfn>[[\userResponsePromise]]</dfn>
           </dt>
           <dd>
@@ -566,15 +558,14 @@
             </li>
             <li>Let <a>[[\userResponsePromise]]</a> be a newly created promise.
             </li>
-            <li>Let <a>[[\promptOutcome]]</a> be <code>null</code>.
-            </li>
             <li>If <code>eventInit.userChoice</code> is valid, then:
               <ol>
-                <li>Resolve <a>[[\userResponsePromise]]</a> with
-                <code>eventInit.userChoice</code>.
+                <li>Let <var>responseObj</var> be a newly created
+                <a>PromptResponseObject</a> whose <code>userChoice</code>
+                member is the value of <code>eventInit.userChoice</code>.
                 </li>
-                <li>Set <a>[[\promptOutcome]]</a> to the value of
-                <code>eventInit.userChoice</code>.
+                <li>Resolve <a>[[\userResponsePromise]]</a>
+                <var>responseObj</var>.
                 </li>
               </ol>
             </li>
@@ -593,10 +584,6 @@
             </li>
             <li>Run the following steps <a>in parallel</a>:
               <ol>
-                <li>If <a>[[\promptOutcome]]</a> is not <code>null</code>,
-                resolve <var>p</var> with <a>[[\userResponsePromise]]</a> and
-                terminate this algorithm.
-                </li>
                 <li>If this event's <code>isTrusted</code> attribute is <code>
                   false</code>, reject <a>[[\userResponsePromise]]</a> with
                   <a>NotAllowedError</a>, optionally informing the developer
@@ -606,8 +593,8 @@
                 <a>request to present an install prompt</a> and wait, possibly
                 indefinitely, for the end-user to make a choice.
                 </li>
-                <li>Upon fulfillment of [[\userResponsePromise]], resolve <var>
-                  p</var> with <a>[[\userResponsePromise]]</a>.
+                <li>Upon fulfillment of <a>[[\userResponsePromise]]</a>,
+                resolve <var>p</var> with <a>[[\userResponsePromise]]</a>.
                 </li>
               </ol>
             </li>
@@ -620,12 +607,12 @@
           </p>
           <ol>
             <li>
-              <a>Present an install prompt</a> and let <var>event</var>'s
-              <a>[[\promptOutcome]]</a> be the result.
+              <a>Present an install prompt</a> and <var>outcome</var> be the
+              result.
             </li>
             <li>Let <var>responseObj</var> be a newly created
             <a>PromptResponseObject</a> whose <code>userChoice</code> member is
-            set to event's <a>[[\promptOutcome]]</a>.
+            the value of <var>outcome</var>.
             </li>
             <li>Resolve <a>[[\userResponsePromise]]</a> with
             <var>responseObj</var>.
