@@ -631,7 +631,7 @@
             presented to the end-user.
           </p>
           <pre class="example" title="'beforeinstallprompt' in action">
-            window.addEventListener("beforeinstallprompt", async function(event) {
+            window.addEventListener("beforeinstallprompt", async (event) =&gt; {
               event.preventDefault();
               // await e.g., user composing an email...
               await Promise.all(tasksThatPreventsInstallation);
